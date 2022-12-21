@@ -6,7 +6,7 @@ const initialState = {
   isOpen: false,
 }
 
-export const GlobalContext = createContext(initialState);
+export const FavouritesContext = createContext(initialState);
 
 export const GlobalProvider = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -32,7 +32,7 @@ export const GlobalProvider = (props) => {
   }
 
   return (
-    <GlobalContext.Provider value={{
+    <FavouritesContext.Provider value={{
       favourites: state.favourites,
         isOpen: state.isOpen,
         openCloseMenu,
@@ -41,6 +41,6 @@ export const GlobalProvider = (props) => {
         removeRecipeFromFavourites
         }}>
         {props.children}
-    </GlobalContext.Provider>
+    </FavouritesContext.Provider>
   )
 };

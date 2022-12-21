@@ -1,18 +1,18 @@
 import {Route, Routes} from 'react-router-dom';
-import { GlobalContext } from '../context/Globalstate';
+import {FavouritesContext} from '../context/Globalstate';
 import React, {useContext} from 'react';
 import Home from '../pages/Home';
 import Category from '../pages/Category';
 import Searched from '../pages/Searched';
-import Favourites from '../pages/Favourities';
+import Favourites from '../pages/Favourites';
 import RecipeDetails from '../pages/RecipeDetails';
 import ErrorPage from '../pages/ErrorPage';
-import styled from 'styled-components';
 import '../index.css';
+import {PagesCountainer} from './Pages.styled'
 
 const Pages = () => {
 
-  const {isOpen} = useContext(GlobalContext);
+  const {isOpen} = useContext(FavouritesContext);
 
   return (
     <PagesCountainer isOpen={isOpen}>
@@ -27,18 +27,5 @@ const Pages = () => {
     </PagesCountainer>
   )
 }
-
-const PagesCountainer = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  padding: 10px 0;
-  
-  height: ${({ isOpen }) => isOpen ? 'calc(100% - 80px)' : ''};
-  overflow-y: ${({ isOpen }) => isOpen ? 'hidden' : ''};
-
-  @media (max-width: 991px) {
-    filter: ${({ isOpen }) => isOpen ? 'blur(8px)' : ''};
-    }
-`;
 
 export default Pages;

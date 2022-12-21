@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import {ErrorContainer} from './ErrorPage.styled';
 
 const ErrorPage = () => {
   return (
@@ -7,12 +7,5 @@ const ErrorPage = () => {
     </ErrorContainer>
   )
 };
-
-const ErrorContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 50px;
-`;
 
 export default ErrorPage;

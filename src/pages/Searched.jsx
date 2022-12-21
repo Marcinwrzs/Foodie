@@ -1,7 +1,7 @@
 import {Fragment, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Recipe from './Recipe';
-import styled from 'styled-components';
+import {FavErrContainer, FavContainer} from './Searched.styled';
 
 const Searched = () => {
 
@@ -47,21 +47,5 @@ const Searched = () => {
     </Fragment>
   )
 }
-
-const FavErrContainer = styled.div`
-  text-align: center;
-  padding-top: 50px;
-
-  span {
-    color: #62a5a1;
-  }
-`;
-
-const FavContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-`;
 
 export default Searched;

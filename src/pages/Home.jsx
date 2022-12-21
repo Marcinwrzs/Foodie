@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import Recipe from './Recipe';
-import styled from 'styled-components';
+import {Wrapper} from './Home.styled';
 
 function Home() {
 
@@ -69,11 +69,5 @@ function Home() {
     </div>
   )
 }
-
-const Wrapper = styled.div`
-  h1 {
-    text-align: center;
-  }
-`;
 
 export default Home;

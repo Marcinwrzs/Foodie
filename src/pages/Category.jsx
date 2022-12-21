@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Recipe from './Recipe';
-import styled from 'styled-components';
+import {CatWrapper, CatContainer} from './Category.styled';
 
 const Home = () => {
 
@@ -9,7 +9,7 @@ const Home = () => {
   let params = useParams();
 
   const getRecipes = async (name) => {
-
+    
     if(name === 'vegetarian') {
       const data = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=12&tags=vegetarian`);
       if(data.status === 402) {
@@ -60,16 +60,5 @@ const Home = () => {
     </CatWrapper>
   )
 };
-
-const CatWrapper = styled.div`
-  text-align: center;
-`;
-
-const CatContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-`;
 
 export default Home;
