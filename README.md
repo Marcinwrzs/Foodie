@@ -1,5 +1,12 @@
 # Getting Started with Foodie App
 
+### Hosting
+
+This project has been deployed as a website on Netlify.
+Please visit below address to see results:
+
+##### `https://foodie-reactapp.netlify.app/`
+
 ## Installation and Setup Instructions
 
 Clone down this repository. You will need node and npm installed globally on your machine.
@@ -15,13 +22,6 @@ To start server::
 Runs the app in the development mode.
 
 Open `http://localhost:3000` to view it in your browser.
-
-### Hosting
-
-This project has been deployed as a website on Netlify.
-Please visit below address to see results:
-
-##### `https://foodie-reactapp.netlify.app/`
 
 ### About The Foodie App
 
