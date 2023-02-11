@@ -7,6 +7,9 @@ Please visit below address to see results:
 
 ##### `https://foodie-reactapp.netlify.app/`
 
+![image](https://user-images.githubusercontent.com/77743373/218255426-d1918ff9-86e0-4ccb-9e97-7a616108db7e.png)
+
+
 ## Installation and Setup Instructions
 
 Clone down this repository. You will need node and npm installed globally on your machine.
