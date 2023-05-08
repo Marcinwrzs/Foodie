@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b1c9c7;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a7b6b5;
+}
+
+h1, h4 {
+  font-family: 'Cabin', sans-serif;
+}
+
+h2 {
+  color: #0a0a0acc;
+  text-align: center;
+  font-family: 'Cabin', sans-serif;
+}
+
+span {
+  color: #62a5a1;
+  font-family: 'Cabin', sans-serif;
+}
+
+.main {
+  margin: 20px auto 0 !important;
+  height: 340px !important;
+  box-shadow: 1px 1px 1px white !important;
+}
+
+.next {
+  right: -20px;
+}
+
+.previous {
+  left: -20px;
+}
