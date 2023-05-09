@@ -1,6 +1,7 @@
 # Getting Started with Foodie App
 
 ### Hosting
+![image](https://github.com/Marcinwrzs/Foodie/assets/77743373/75a4361d-823b-47c0-94f9-5aab0baef8b9)
 
 This project has been deployed as a website on Netlify.
 Please visit below address to see results:
