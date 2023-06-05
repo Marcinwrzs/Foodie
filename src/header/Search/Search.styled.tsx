@@ -4,6 +4,7 @@ export const Form = styled.form`
   @media (max-width: 991px) {
     margin: 0 auto;
     width: 80%;
+    padding-top: 20px;
   }
 
   div {
@@ -12,6 +13,7 @@ export const Form = styled.form`
     height: 100%;
     position: relative;
     width: 100%;
+    padding-left: 20px;
   }
 
   input {
