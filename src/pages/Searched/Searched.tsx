@@ -14,7 +14,7 @@ const Searched: React.FC = () => {
 
     const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`);
 
-    if(data.status === 402) {
+    if(data.status == 402) {
       setRequestsLimitExceeded(true);
     } else {
       const recipes = await data.json();
