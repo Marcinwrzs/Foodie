@@ -38,10 +38,10 @@ export const Slink = styled(NavLink)`
   justify-content: center;
   color: white;
   text-decoration: none;
-  margin: 0 20px;
+  margin-left: 20px;
 
   @media (max-width: 991px) {
-    margin: 20px 0;
+    margin: 20px 0 0 0;
   }
 
   h4:hover {

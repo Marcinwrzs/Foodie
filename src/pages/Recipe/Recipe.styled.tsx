@@ -41,4 +41,4 @@ export const Title = styled.div`
     width: 80%;
     text-align: left;
   }
-`
+`;

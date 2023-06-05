@@ -3,35 +3,52 @@ import {useParams} from 'react-router-dom';
 import Recipe from 'pages/Recipe/Recipe';
 import {RecipeTypes} from 'pages/Recipe/Recipe';
 import {FavErrContainer, FavContainer} from './Searched.styled';
+import { getSearched} from 'api/services/recipes';
+import { usePagination } from "hooks/pagination";
+import PaginationButtons from 'pages/PaginationButtons/PaginationButtons'
 
 const Searched: React.FC = () => {
 
   let params = useParams<string>();
+
   const [searched, setSearched] = useState<RecipeTypes[]>([]);
   const [requestsLimitExceeded, setRequestsLimitExceeded] = useState<boolean>(false);
   
-  const getSearchedRecipe = async (name: string): Promise<void> => {
+  const {
+    currentOffset,
+    nextPage,
+    prevPage,
+    perPage,
+    updateResultsCount, 
+    lastPage,
+    currentPageNumber,
+    changePage,
+  } = usePagination(8, 0);
 
-    const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`);
-
-    if(data.status == 402) {
-      setRequestsLimitExceeded(true);
-    } else {
-      const recipes = await data.json();
-      setSearched(recipes.results);
+  const getRecipes = async (name: string, perPage: number, currentPage: number): Promise<void> => {
+    try {
+      let response = await getSearched(name, perPage, currentPage);
+      setSearched(response.results);
+      updateResultsCount(response.totalResults); 
       setRequestsLimitExceeded(false);
+    } catch (error) {
+      setRequestsLimitExceeded(true);
     }
   }
 
   useEffect(() => {
-    params.type && getSearchedRecipe(params.type);
-  }, [params.type]);
-   
+    params.type && getRecipes(params.type, perPage, currentOffset);
+  }, [params.type, currentOffset, perPage]);
+
+  useEffect(() => {
+    changePage(1);
+  },[params.type])
 
   return (
     <Fragment>
       {!requestsLimitExceeded ? (
         searched.length ? (
+          <>
           <FavContainer>
             {searched.map((item) => {
               return (
@@ -39,6 +56,9 @@ const Searched: React.FC = () => {
               )
             })}
           </FavContainer>
+
+          <PaginationButtons onChangePage={changePage} lastPage={lastPage} currentPageNumber={currentPageNumber} prevPage={prevPage} nextPage={nextPage}/>
+          </>
         ) : (
           <FavErrContainer>
             <h1><span>Sorry,</span> we don't have this recipe.</h1>

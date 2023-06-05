@@ -12,6 +12,4 @@ const Burger: React.FC = () => {
   )
 }
 
-
-
 export default Burger;

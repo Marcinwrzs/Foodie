@@ -21,9 +21,9 @@ const CategoriesList: React.FC = () => {
         <h4>American</h4>
       </Slink>
 
-      <Slink to={'/category/vegetarian'} >
-        <img src='photos/vegetarian.jpg' alt='vegetarian' />
-        <h4>Vegetarian</h4>
+      <Slink to={'/category/salad'} >
+        <img src='photos/salad.jpg' alt='salad' />
+        <h4>Salad</h4>
       </Slink>
 
       <Slink to={'/category/dessert'} >

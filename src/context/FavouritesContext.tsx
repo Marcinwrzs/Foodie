@@ -52,5 +52,4 @@ const FavouritesProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const useFavouritesContext = () => useContext(FavouritesContext);
-
 export default FavouritesProvider;

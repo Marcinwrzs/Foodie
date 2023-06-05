@@ -1,4 +1,11 @@
 import { api } from "api/index";
+
+interface PaginatedData<T> {
+  results: T[],
+  offset: number,
+  number: number,
+  totalResults: number,
+}
 interface Recipe {
   id: number;
   image: string;
@@ -30,19 +37,22 @@ export const getFavourites = async (id: number): Promise<Recipe> => {
   return (await api.get(`/${id}/information/`)).data;
 };
 
-export const getVegetarian = async (): Promise<Recipe[]> => {
-  return (await api.get(`/random?/&number=12&tags=vegetarian`)).data.recipes.map(mapRecipes);
+export const getSalad = async (name: string, perPage: number, paginationOffset: number): Promise<PaginatedData<Recipe>> => {
+  return (await api.get(`/complexSearch?/&type=${name}/&number=${perPage}&offset=${paginationOffset}`)).data;
 }
 
-export const getDessert = async (name: string): Promise<Recipe[]> => {
-  return (await api.get(`/complexSearch?/&type=${name}`)).data.results;
+export const getDessert = async (name: string, perPage: number, paginationOffset: number): Promise<PaginatedData<Recipe>> => {
+  return (await api.get(`/complexSearch?/&type=${name}/&number=${perPage}&offset=${paginationOffset}`)).data;
 }
 
-export const getCategories = async (name: string): Promise<Recipe[]> => {
-  return (await api.get(`/complexSearch?/&cuisine=${name}`)).data.results;
+export const getCategories = async (name: string, perPage: number, paginationOffset: number): Promise<PaginatedData<Recipe>> => {
+  return (await api.get(`/complexSearch?/&cuisine=${name}/&number=${perPage}&offset=${paginationOffset}`)).data;
 }
+
+export const getSearched = async (name: string, perPage: number, paginationOffset: number): Promise<PaginatedData<Recipe>> => {
+  return (await api.get(`/complexSearch?/&query=${name}/&number=${perPage}&offset=${paginationOffset}`)).data;
+};
 
 export const getDetails = async (name: string): Promise<DetailRecipe> => {
   return (await api.get(`${name}/information/`)).data;
 };
-

@@ -11,7 +11,7 @@ export interface RecipeTypes {
 }
 
 const Recipe: React.FC<RecipeTypes> = ({ className, id, image, title}) => {
-
+  
   return (
     <Srecipe className={className}>
       <NavLink to={'/recipe/' + id} >
@@ -21,7 +21,7 @@ const Recipe: React.FC<RecipeTypes> = ({ className, id, image, title}) => {
         <h4>{title}</h4>
         <FavouritiesButtons id={id} image={image} title={title} />
       </Title>
-      <RatingStar id={id}/>
+      <RatingStar id={id} />
     </Srecipe>
   )
 };
