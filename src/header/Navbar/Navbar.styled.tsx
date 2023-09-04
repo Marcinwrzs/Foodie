@@ -31,7 +31,7 @@ export const Navigation = styled.div<NavigationProps>`
   }
 `;
 
-export const Slink = styled(NavLink)`
+export const Link = styled(NavLink)`
   display: flex;
   align-items: center;
   font-size: 15px;

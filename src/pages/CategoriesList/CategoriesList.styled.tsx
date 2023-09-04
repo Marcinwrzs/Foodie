@@ -8,7 +8,7 @@ export const ListWrapper = styled.div`
   align-items: center;
 `;
 
-export const Slink = styled(NavLink)`
+export const Link = styled(NavLink)`
   display: flex;
   border: 1px solid black;
   align-items: center;

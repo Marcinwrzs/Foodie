@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Srecipe = styled.div`
+export const Recipe = styled.div`
   position: relative;
   margin: 15px 10px 0 10px;
   max-width: 340px;

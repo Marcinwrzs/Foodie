@@ -1,4 +1,4 @@
-import {Form, Dropdown} from './Sort.styled'
+import * as Styled from './Sort.styled'
 import { useState } from 'react';
 import { SlArrowDown } from "react-icons/sl";
 
@@ -33,15 +33,13 @@ const Sort = ({ value, onSort}: SortItemProps) => {
   };
   
   return (
-    <Form>
+    <Styled.Form>
       <h4>Sort recipes by: </h4>
-
-      <Dropdown isOpen={isOpen}>
+      <Styled.Dropdown isOpen={isOpen}>
         <div className='dropdown-header' onClick={toggleDropdown}>
           <p>{value}</p>
           <SlArrowDown/>
         </div>
-
         <ul>
           {SortOptions.map(({ name, value }) => (
             <li key={value} value={value} onClick={() => handleChange(value)}>
@@ -49,8 +47,8 @@ const Sort = ({ value, onSort}: SortItemProps) => {
             </li>
           ))}
         </ul>
-      </Dropdown>
-    </Form>
+      </Styled.Dropdown>
+    </Styled.Form>
   )
 };
 

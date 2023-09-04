@@ -1,69 +1,112 @@
-import Recipe from 'pages/Recipe/Recipe';
-import {FavWrapper, FavContainer, LoadingComponentContainer, LoadingComponent} from './Favourites.styled'
+import Recipe from "pages/Recipe/Recipe";
+
+import * as Styled from "./Favourites.styled";
 import { useFavouritesContext } from "context/FavouritesContext";
-import {RecipeTypes} from 'pages/Recipe/Recipe';
-import { useCallback, useEffect, useState} from 'react';
-import { getFavourites, mapRecipes} from 'api/services/recipes';
+import { RecipeTypes } from "pages/Recipe/Recipe";
+import { useCallback, useEffect, useState } from "react";
+import { getFavourites, mapRecipes } from "api/services/recipes";
+import { useTokenContext } from "context/tokenContext/useTokenContext";
+import axios from "api/useAxios/axios";
 
 const Favourities: React.FC = () => {
+  const [favouriteRecipes, setFavouriteRecipes] = useState<RecipeTypes[]>([]);
+  const [requestsLimitExceeded, setRequestsLimitExceeded] =
+    useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
-  const { favourites } = useFavouritesContext();
-  const [favouritesRecipes, setFavouritesRecipes ] = useState<RecipeTypes[]>([])
-  const [requestsLimitExceeded, setRequestsLimitExceeded] = useState<boolean>(false);
+  const { favouriteRecipesId, GetFavouritesFromApi } = useFavouritesContext();
+  const { accessToken } = useTokenContext();
 
-  const loadRecipe = async (id: number): Promise<RecipeTypes> => {
+  const checkProfile = useCallback(async () => {
+    try {
+      await axios.get(
+        "https://hr-api-with-favourite-recipes.onrender.com/users/me",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+    } catch (_error) {
+      setIsError(true);
+    }
+  }, [accessToken]);
+
+  const loadRecipe = async (id: string): Promise<RecipeTypes> => {
     try {
       return await getFavourites(id);
-    } 
-    catch (error) {
+    } catch (error) {
       setRequestsLimitExceeded(true);
       return await getFavourites(id);
     }
-  } 
+  };
 
-  const loadAllRecipes = useCallback(async (): Promise<void> => {
-    const recipesRaw = await Promise.all(favourites.map(loadRecipe));
+  const loadAllRecipes = useCallback(async () => {
+    const recipesRaw = await Promise.all(favouriteRecipesId.map(loadRecipe));
     const recipes = recipesRaw.map(mapRecipes);
-    setFavouritesRecipes(recipes)  
-  }, [favourites]);
+    setFavouriteRecipes(recipes);
+  }, [favouriteRecipesId]);
 
   useEffect(() => {
-    loadAllRecipes();
-  }, [loadAllRecipes]);
+    if (accessToken) {
+      checkProfile();
+      GetFavouritesFromApi();
+    }
+  }, [GetFavouritesFromApi, accessToken, checkProfile]);
+
+  useEffect(() => {
+    accessToken && loadAllRecipes();
+  }, [accessToken, loadAllRecipes]);
+
+  const generateFavouriteContent = () => {
+    if (!accessToken || isError) {
+      return (
+        <h1>
+          <span>Sorry! </span>You have to be logged in to see your favourite
+          recipes!
+        </h1>
+      );
+    } else if (requestsLimitExceeded) {
+      return (
+        <h1>
+          <span>Sorry,</span> Daily limit has been exceeded
+        </h1>
+      );
+    } else if (!favouriteRecipesId.length) {
+      return (
+        <h1>
+          <span>Sorry,</span> You don't have any favourite recipe.
+        </h1>
+      );
+    } else if (!favouriteRecipes.length) {
+      return (
+        <Styled.LoadingComponentContainer>
+          <Styled.LoadingComponent>
+            {[...Array(9)].map((item, index) => (
+              <div key={index}></div>
+            ))}
+          </Styled.LoadingComponent>
+        </Styled.LoadingComponentContainer>
+      );
+    } else {
+      return favouriteRecipes.map((item: RecipeTypes) => (
+        <Recipe
+          className="fav"
+          key={item.id}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+        />
+      ));
+    }
+  };
 
   return (
-    <FavWrapper>
-      <h1>Favourities</h1> 
-      <FavContainer>
-        {!requestsLimitExceeded ? (
-          <>
-          {favourites.length ? (
-              favouritesRecipes.length ? (
-                favouritesRecipes.map((item: RecipeTypes) => {
-                  return (
-                    <Recipe className='fav' key={item.id} id={item.id} image={item.image} title={item.title} />  
-                  )
-                })
-              ) : (
-                <LoadingComponentContainer>
-                  <LoadingComponent>
-                    {[...Array(9)].map((item, index) => (<div key={index}></div>))}
-                  </LoadingComponent>
-                </LoadingComponentContainer>
-              )
-            )
-          : (
-          <h1><span>Sorry,</span> You don't have any favourite recipe.</h1>
-            )}
-          </>
-          ) : (
-          <>
-            <h1><span>Sorry,</span> Daily limit has been exceed</h1>
-          </>
-        )}
-      </FavContainer>
-    </FavWrapper>
-  )
-}
+    <Styled.FavWrapper>
+      <h1>Favourites</h1>
+      <Styled.FavContainer>{generateFavouriteContent()}</Styled.FavContainer>
+    </Styled.FavWrapper>
+  );
+};
 
 export default Favourities;

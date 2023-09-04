@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import RecipeSlider from 'pages/RecipeSlider/RecipeSlider';
-import { Wrapper } from './Home.styled';
+import * as Styled from './Home.styled';
 import {RecipeTypes} from 'pages/Recipe/Recipe';
 import { getPopular } from 'api/services/recipes';
+
 
 const Home: React.FC = () => {
 
@@ -32,7 +33,7 @@ const Home: React.FC = () => {
   }, []);
   
   return (
-    <Wrapper>
+    <Styled.Wrapper>
       {!requestsLimitExceeded ? (
         <>
           <h1>Popular recipes</h1>
@@ -41,7 +42,7 @@ const Home: React.FC = () => {
       ) : (
           <h1><span>Sorry! </span>Daily limit has been reached.</h1>
       )}
-    </Wrapper>
+    </Styled.Wrapper>
   )
 };
 

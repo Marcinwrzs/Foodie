@@ -1,28 +1,29 @@
 import { NavLink } from 'react-router-dom';
-import {Srecipe, Title} from './Recipe.styled';
+import * as Styled from './Recipe.styled';
 import FavouritiesButtons from 'pages/FavouritiesButtons/FavouritiesButtons';
 import RatingStar from 'pages/RatingStar/RatingStar';
+import { Paths } from 'components/Pages/Pages';
 
 export interface RecipeTypes {
   className?: string;
   image: string;
-  id: number;
+  id: string;
   title: string;
 }
 
-const Recipe: React.FC<RecipeTypes> = ({ className, id, image, title}) => {
+const Recipe = ({ className, id, image, title}: RecipeTypes) => {
   
   return (
-    <Srecipe className={className}>
-      <NavLink to={'/recipe/' + id} >
+    <Styled.Recipe className={className}>
+      <NavLink to={Paths.RecipeDetails + id} >
         <img src={image} alt={title} />
       </NavLink>
-      <Title>
+      <Styled.Title>
         <h4>{title}</h4>
         <FavouritiesButtons id={id} image={image} title={title} />
-      </Title>
+      </Styled.Title>
       <RatingStar id={id} />
-    </Srecipe>
+    </Styled.Recipe>
   )
 };
 

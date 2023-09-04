@@ -3,17 +3,17 @@ import Navbar from 'header/Navbar/Navbar';
 import Logo from 'header/Logo/Logo';
 import Burger from 'header/Burger/Burger';
 import 'index.css';
-import {Container, Navigation} from './Header.styled';
+import * as Styled from './Header.styled';
 
 const Header: React.FC = () => {  
   return (
-    <Navigation>
-        <Container>
+    <Styled.Navigation>
+        <Styled.Container>
             <Logo />
             <Navbar />
             <Burger />
-        </Container>
-    </Navigation>
+        </Styled.Container>
+    </Styled.Navigation>
   )
 }
 

@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Recipe from 'pages/Recipe/Recipe';
-import {CatWrapper, CatContainer} from './Category.styled';
+import * as Styled from './Category.styled';
 import {RecipeTypes} from 'pages/Recipe/Recipe';
 import { getCategories, getSalad, getDessert} from 'api/services/recipes';
-import Sort from 'pages/Sort/Sort'
-import PaginationButtons from 'pages/PaginationButtons/PaginationButtons'
+import Sort from 'pages/Sort/Sort';
+import PaginationButtons from 'pages/PaginationButtons/PaginationButtons';
 import { usePagination } from 'hooks/pagination';
-import 'index.css'
+import 'index.css';
 
 enum SortingType {
   Random = 'Random',
@@ -79,28 +79,28 @@ const Category: React.FC = () => {
   }
 
   return (
-    <CatWrapper>      
+    <Styled.CatWrapper>      
       {params.type && <h1>{ params.type.toUpperCase()}</h1>}
       <Sort value={sortBy} onSort={setSortBy} />
       <div>
         {!requestsLimitExceeded ? (
           <>
-          <CatContainer>
+          <Styled.CatContainer>
           {category.map((item) => {
             return (
               <Recipe key={item.id} id={item.id} image={item.image} title={item.title}/>  
             )
           })}
-          </CatContainer>
+          </Styled.CatContainer>
           <PaginationButtons onChangePage={changePage} lastPage={lastPage} currentPageNumber={currentPageNumber} prevPage={prevPage} nextPage={nextPage}/>
           </>
         ) : (
-          <CatContainer>
+          <Styled.CatContainer>
             <h1><span>Sorry! </span>Daily limit has been reached.</h1>  
-          </CatContainer>
+          </Styled.CatContainer>
         )}
       </div>
-    </CatWrapper>
+    </Styled.CatWrapper>
   )
 };
 

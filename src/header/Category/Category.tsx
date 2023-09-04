@@ -1,4 +1,5 @@
-import {Slink} from './Category.styled';
+import { Paths } from 'components/Pages/Pages';
+import * as Styled from './Category.styled';
 import { useThemeContext} from 'context/ThemeContext';
 
 const Category: React.FC = () => {
@@ -7,9 +8,9 @@ const Category: React.FC = () => {
 
   return (
     <div>
-      <Slink to={'/category'} onClick={closeMenu}>
+      <Styled.Link to={Paths.CategoriesList} onClick={closeMenu}>
           <h4>Categories</h4>
-      </Slink>
+      </Styled.Link>
     </div>
   )
 }

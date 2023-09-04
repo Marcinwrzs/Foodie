@@ -1,14 +1,7 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import 'index.css';
-import {
-  LoadingComponentContainer,
-  LoadingComponent,
-  DetailContainer,
-  Button,
-  DetailWrapper,
-} from "./RecipeDetails.styled";
-
+import * as Styled from "./RecipeDetails.styled";
 import RatingStar from 'pages/RatingStar/RatingStar'
 import { getDetails } from 'api/services/recipes';
 
@@ -60,36 +53,36 @@ const RecipeDetails: React.FC = () => {
   }, [params.name]);
 
   return (
-    <DetailContainer>
+    <Styled.DetailContainer>
       {!requestsLimitExceeded ? (
         isLoading ? (
           <>
             <h2>{details.title}</h2>
 
-            <RatingStar id={Number(params.name)} />
+            <RatingStar /* id={Number(params.name)} */ id={String(params.name)} />
 
             <div className="summary">
               <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
             </div>
 
-            <DetailWrapper>
+            <Styled.DetailWrapper>
               <div className="photo">
                 <img src={details.image} alt={details.image} />
               </div>
               <div className="info">
                 <div className="buttons">
-                  <Button
+                  <Styled.Button
                     onClick={() => setRecipeInfo("instructions")}
                     className={recipeInfo === "instructions" ? "active" : ""}
                   >
                     Instructions
-                  </Button>
-                  <Button
+                  </Styled.Button>
+                  <Styled.Button
                     onClick={() => setRecipeInfo("ingredients")}
                     className={recipeInfo === "ingredients" ? "active" : ""}
                   >
                     Ingredients
-                  </Button>
+                  </Styled.Button>
                 </div>
 
               {recipeInfo === "instructions" ? (
@@ -112,19 +105,19 @@ const RecipeDetails: React.FC = () => {
               </div>
               )}
               </div>
-            </DetailWrapper>
+            </Styled.DetailWrapper>
           </>
       ) : (
-        <LoadingComponentContainer>
-          <LoadingComponent>
+        <Styled.LoadingComponentContainer>
+          <Styled.LoadingComponent>
             {[...Array(9)].map((item, index) => (<div key={index}></div>))}
-          </LoadingComponent>
-        </LoadingComponentContainer>
+          </Styled.LoadingComponent>
+        </Styled.LoadingComponentContainer>
         )
       ) : (
         <h1><span>Sorry! </span>Daily limit has been reached.</h1> 
       )}
-    </DetailContainer>
+    </Styled.DetailContainer>
   );
 }
 

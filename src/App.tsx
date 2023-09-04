@@ -3,20 +3,24 @@ import ThemeProvider from "./context/ThemeContext";
 import FavouritesProvider from "./context/FavouritesContext";
 import Header from './components/Header/Header';
 import Pages from './components/Pages/Pages';
-import { AppWrapper } from './App.styled';
+import * as Styled from './App.styled';
+import { TokenContextController } from 'context/tokenContext/TokenContextController';
 
 const App = () => {
+  
   return (
-    <ThemeProvider>
-      <FavouritesProvider>
-        <BrowserRouter>
-          <AppWrapper>
-            <Header />
-            <Pages />
-          </AppWrapper>
-        </BrowserRouter>
-      </FavouritesProvider>
-    </ThemeProvider>
+    <TokenContextController>
+      <ThemeProvider>
+        <FavouritesProvider>
+          <BrowserRouter>
+            <Styled.AppWrapper>
+              <Header />
+              <Pages />
+            </Styled.AppWrapper>
+          </BrowserRouter>
+        </FavouritesProvider>
+      </ThemeProvider>
+    </TokenContextController>
   );
 }
 

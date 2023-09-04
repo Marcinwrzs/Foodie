@@ -6,5 +6,4 @@ export const AppWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  min-height: -webkit-fill-available;
 `;

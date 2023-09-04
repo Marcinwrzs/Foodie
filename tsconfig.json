@@ -30,5 +30,6 @@
     ".jpg",
     "src/index.d.ts",
     "index.d.ts",
+    "env.d.ts"
   ]
 }

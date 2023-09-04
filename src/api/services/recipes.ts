@@ -7,7 +7,7 @@ interface PaginatedData<T> {
   totalResults: number,
 }
 interface Recipe {
-  id: number;
+  id: string;
   image: string;
   title: string;
 }
@@ -33,7 +33,7 @@ export const getPopular = async (): Promise<Recipe[]> => {
   return (await api.get(`/random?/&number=10`)).data.recipes.map(mapRecipes);
 };
 
-export const getFavourites = async (id: number): Promise<Recipe> => {
+export const getFavourites = async (id: string): Promise<Recipe> => {
   return (await api.get(`/${id}/information/`)).data;
 };
 

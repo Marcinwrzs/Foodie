@@ -1,17 +1,18 @@
-import {LogoElement, Logolink} from './Logo.styled';
+import * as Styled from './Logo.styled';
 import {MdOutlineFoodBank} from 'react-icons/md';
 import { useThemeContext} from 'context/ThemeContext';
+import { Paths } from 'components/Pages/Pages';
 
 const Logo: React.FC = () => {
 
   const { closeMenu } = useThemeContext();
 
   return (
-    <LogoElement>
-      <Logolink to={'/'} onClick={closeMenu}>
+    <Styled.Logo>
+      <Styled.Link to={Paths.Home} onClick={closeMenu}>
         <MdOutlineFoodBank/>
-      </Logolink>
-    </LogoElement>
+      </Styled.Link>
+    </Styled.Logo>
   )
 };
 

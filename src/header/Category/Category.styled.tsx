@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 
-export const Slink = styled(NavLink)`
+export const Link = styled(NavLink)`
   display: flex;
   align-items: center;
   font-size: 15px;

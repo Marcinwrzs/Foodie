@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {FaStar} from 'react-icons/fa'
-import {SRatingStar} from './RatingStar.styled'
+import * as Styled from './RatingStar.styled'
 
 interface RatingStarProps {
-  id: number;
+  id: string;
 }
 
-const RatingStar: React.FC<RatingStarProps> = ({id}) => {
+const RatingStar= ({id}: RatingStarProps) => {
   
   const [rating, setRating] = useState<number>(Number(localStorage.getItem(`rating-${id}`)) || 0);
 
@@ -18,7 +18,7 @@ const RatingStar: React.FC<RatingStarProps> = ({id}) => {
   }
 
   return (
-    <SRatingStar>
+    <Styled.RatingStar>
         {[...Array(5)].map((star, i) => {
             const ratingValue = i + 1;
             return (
@@ -37,7 +37,7 @@ const RatingStar: React.FC<RatingStarProps> = ({id}) => {
                 </label>
             )
         })}
-    </SRatingStar>
+    </Styled.RatingStar>
   )
 }
 

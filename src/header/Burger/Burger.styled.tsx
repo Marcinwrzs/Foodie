@@ -4,7 +4,7 @@ interface StyledBurgerProps {
   isOpen: boolean;
 }
 
-export const StyledBurger = styled.div<StyledBurgerProps>`
+export const Burger = styled.div<StyledBurgerProps>`
   width: 32px;
   height: 32px;
   position: absolute;
@@ -21,7 +21,6 @@ export const StyledBurger = styled.div<StyledBurgerProps>`
   }
   
   div {
-    color: red;
     width: 33px;
     height: 4px;
     background-color: ${({ isOpen }) => isOpen ? '#ccc' : '#f8faf2'};

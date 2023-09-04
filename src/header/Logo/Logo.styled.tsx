@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const LogoElement = styled.div`  
+export const Logo = styled.div`  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@ export const LogoElement = styled.div`
   }
 `;
 
-export const Logolink = styled(NavLink)`
+export const Link = styled(NavLink)`
   color: white;
   text-decoration: none;
   text-align: center;

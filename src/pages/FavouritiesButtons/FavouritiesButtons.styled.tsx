@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ActionButton = styled.button`
+export const Button = styled.button`
   width: 10%;
   max-width: 35px;
   height: 35px;

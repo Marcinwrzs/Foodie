@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SRatingStar = styled.div`
+export const RatingStar = styled.div`
     text-align: left;
 
     svg {

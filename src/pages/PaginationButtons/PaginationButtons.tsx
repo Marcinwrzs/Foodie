@@ -1,4 +1,4 @@
-import {PaginationButtonsWrapper, Button, PageNumber} from './PaginationButtons.styled'
+import * as Styled from './PaginationButtons.styled'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useMemo } from 'react';
 
@@ -13,7 +13,6 @@ interface PaginationButtonsProps {
 const PaginationButtons = ({onChangePage, currentPageNumber, lastPage, prevPage, nextPage}: PaginationButtonsProps) => {
 
   const pageNumbers = useMemo(() => {
-    console.log(lastPage)
     if (lastPage <= 3) {
       return Array.from(Array(lastPage).keys()).map((i) => i + 1);
     } else if (currentPageNumber === 1 || currentPageNumber === 2) {
@@ -27,22 +26,22 @@ const PaginationButtons = ({onChangePage, currentPageNumber, lastPage, prevPage,
 
 
   return (
-    <PaginationButtonsWrapper>
-      <Button disabled={currentPageNumber === 1} onClick={prevPage}> <MdOutlineKeyboardArrowLeft/> </Button>
+    <Styled.Wrapper>
+      <Styled.Button disabled={currentPageNumber === 1} onClick={prevPage}> <MdOutlineKeyboardArrowLeft/> </Styled.Button>
         {pageNumbers?.map((number) => {
           return (
-            <PageNumber
+            <Styled.PageNumber
               key={number}
               id={String(number)}
               onClick={() => onChangePage(number)}
               className={number === currentPageNumber ? 'active' : ''}
               >
                 {number}
-            </PageNumber>
+            </Styled.PageNumber>
           );
         })}
-      <Button disabled={currentPageNumber === lastPage} onClick={nextPage}> <MdOutlineKeyboardArrowRight/> </Button>
-    </PaginationButtonsWrapper>
+      <Styled.Button disabled={currentPageNumber === lastPage} onClick={nextPage}> <MdOutlineKeyboardArrowRight/> </Styled.Button>
+    </Styled.Wrapper>
   )
 };
 

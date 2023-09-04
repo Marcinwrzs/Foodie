@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Sbutton = styled.button`
+export const Button = styled.button`
     background-color: rgba(0,0,0,0);
     width: 50px;
     cursor: pointer;

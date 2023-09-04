@@ -1,5 +1,5 @@
 import Recipe from 'pages/Recipe/Recipe';
-import { Sbutton } from './RecipeSlider.styled';
+import * as Styled from './RecipeSlider.styled';
 import Slider from "react-slick";
 import { BiLeftArrow, BiRightArrow} from "react-icons/bi";
 import {RecipeTypes} from 'pages/Recipe/Recipe';
@@ -14,23 +14,23 @@ interface RecipeSliderProps {
 
 const ButtonArrow = ({onClick, className, icon}: ButtonArrowProps) => {
   return (
-    <Sbutton
+    <Styled.Button
     className={className}
     onClick={onClick}
     >
     {icon}
-    </Sbutton>
+    </Styled.Button>
   );
 }
 
-const RecipeSlider: React.FC<RecipeSliderProps> = ({popularRecipes}) => {
+const RecipeSlider = ({popularRecipes}: RecipeSliderProps) => {
   const settings = {
     infinite: true,
     speed: 400,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
-    prevArrow: <ButtonArrow icon={<BiLeftArrow/>} className='prev'/>,
+    prevArrow: <ButtonArrow icon={<BiLeftArrow/>} className='prev' />,
     nextArrow: <ButtonArrow icon={<BiRightArrow/>} className='next' />,
     responsive: [
       {

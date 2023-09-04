@@ -7,4 +7,4 @@ export const api = axios.create(
       'x-api-key': `${process.env.REACT_APP_API_KEY}`
     }
   }
-)
+);
